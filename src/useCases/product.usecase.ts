@@ -18,6 +18,10 @@ export class ProductUseCase {
     price,
     stock,
   }: ProductCreate): Promise<Product> {
+    if (name) {
+      throw new Error("Product name already exists");
+    }
+
     if (!price || price < 0) {
       throw new Error("Price cannot be empty or a negative value");
     }
@@ -26,9 +30,6 @@ export class ProductUseCase {
       throw new Error("Stock cannot be empty or a negative value");
     }
 
-    if (description.length > 500) {
-      throw new Error("Description cannot be longer than 500 characters");
-    }
     const newProduct = await this.productRepository.createProduct({
       name,
       description,
