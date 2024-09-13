@@ -33,7 +33,7 @@ app.register(fastifySwagger, {
 });
 
 app.register(fastifySwaggerUi, {
-  routePrefix: "/docs",
+  routePrefix: "/products/docs",
   uiConfig: {
     docExpansion: "full",
     deepLinking: false,
